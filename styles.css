@@ -28,3 +28,8 @@ button {
     right: 10px;
     align-self: center;
 }
+
+.reader {
+    width: 100px;
+    align-self: center;
+}

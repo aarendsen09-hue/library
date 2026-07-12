@@ -56,6 +56,23 @@ function displayBooks() {
             }
         });
         bookView.appendChild(removeBtn);
+
+        if (book.read == false || book.read == "not read yet") {
+            const readBtn = document.createElement("button");
+            readBtn.innerText = "Read";
+            readBtn.classList.add("reader");
+            readBtn.dataset.id = book.id;
+            bookView.appendChild(readBtn);
+            readBtn.addEventListener("click", function(e) {
+            for (var i=0; i<myLibrary.length; i++) {
+                if (myLibrary[i].id == e.target.dataset.id) {
+                    myLibrary[i].read = "read";
+                    displayBooks();
+                }
+            }
+        });
+        }
+
     }
 }
 
