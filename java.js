@@ -27,22 +27,35 @@ function addBookToLibrary(title, author, pages, read) {
 
 function displayBooks() {
     container.textContent = "";
-    for (var i = 0; i < myLibrary.length; i++) {
+    for (const book of myLibrary) {
         var bookView = document.createElement("div");
         bookView.classList.add("card");
         var title = document.createElement("p");
-        title.textContent = myLibrary[i].title;
+        title.textContent = book.title;
         bookView.appendChild(title);
         var author = document.createElement("p");
-        author.textContent = myLibrary[i].author;
+        author.textContent = book.author;
         bookView.appendChild(author);
         var pages = document.createElement("p");
-        pages.textContent = myLibrary[i].pages;
+        pages.textContent = book.pages;
         bookView.appendChild(pages);
         var read = document.createElement("p");
-        read.textContent = myLibrary[i].read;
+        read.textContent = book.read;
         bookView.appendChild(read);
         container.appendChild(bookView);
+        const removeBtn = document.createElement("button");
+        removeBtn.innerText = "Remove";
+        removeBtn.classList.add("remover");
+        removeBtn.dataset.id = book.id;
+        removeBtn.addEventListener("click", function(e) {
+            for (var i=0; i<myLibrary.length; i++) {
+                if (myLibrary[i].id == e.target.dataset.id) {
+                    myLibrary.splice(i, 1);
+                    displayBooks();
+                }
+            }
+        });
+        bookView.appendChild(removeBtn);
     }
 }
 
