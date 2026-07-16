@@ -3,9 +3,9 @@
     border: 2px solid lightcoral;
     box-shadow: 5px 5px 15px lightcoral;
     display: grid;
-    margin: 15px;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     position: relative;
+    gap: 15px;
 }
 
 
@@ -24,8 +24,8 @@ button {
 
 .remover {
     width: 100px;
-    position: absolute;
-    right: 10px;
+    /* position: absolute; */
+    /* right: 10px; */
     align-self: center;
 }
 

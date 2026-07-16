@@ -62,12 +62,13 @@ class Library {
             });
             bookView.appendChild(removeBtn);
 
+            const readBtn = document.createElement("button");
+            readBtn.classList.add("reader");
+            readBtn.dataset.id = book.id;
+            bookView.appendChild(readBtn);
+
             if (book.read == false || book.read == "not read yet") {
-                const readBtn = document.createElement("button");
                 readBtn.innerText = "Read";
-                readBtn.classList.add("reader");
-                readBtn.dataset.id = book.id;
-                bookView.appendChild(readBtn);
                 readBtn.addEventListener("click", (e) => {
                 for (let i=0; i<this.books.length; i++) {
                     if (this.books[i].id == e.target.dataset.id) {
@@ -77,6 +78,19 @@ class Library {
                 }
             });
             }
+            else {
+                readBtn.innerText = "Not read";
+                readBtn.addEventListener("click", (e) => {
+                for (let i=0; i<this.books.length; i++) {
+                    if (this.books[i].id == e.target.dataset.id) {
+                        this.books[i].read = "not read yet";
+                        this.displayBooks();
+                    }
+                }
+            });
+            }
+
+
 
         }
     }
