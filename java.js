@@ -1,4 +1,3 @@
-const myLibrary = new Library();
 const container = document.querySelector(".container");
 const button = document.querySelector("button");
 
@@ -9,7 +8,7 @@ button.addEventListener("click", function(e) {
     const read = prompt("Have you read it?");
     const book = new Book(title, author, pages, read);
     myLibrary.addBookToLibrary(book);
-    book.displayBooks();
+    myLibrary.displayBooks();
 });
 
 class Book {
@@ -53,11 +52,11 @@ class Library {
             removeBtn.innerText = "Remove";
             removeBtn.classList.add("remover");
             removeBtn.dataset.id = book.id;
-            removeBtn.addEventListener("click", function(e) {
-                for (var i=0; i<myLibrary.books.length; i++) {
-                    if (removeBtn.books[i].id == e.target.dataset.id) {
-                        removeBtn.books.splice(i, 1);
-                        removeBtn.displayBooks();
+            removeBtn.addEventListener("click", (e) => {
+                for (let i=0; i<myLibrary.books.length; i++) {
+                    if (this.books[i].id == e.target.dataset.id) {
+                        this.books.splice(i, 1);
+                        this.displayBooks();
                     }
                 }
             });
@@ -69,8 +68,8 @@ class Library {
                 readBtn.classList.add("reader");
                 readBtn.dataset.id = book.id;
                 bookView.appendChild(readBtn);
-                readBtn.addEventListener("click", function(e) {
-                for (var i=0; i<this.books.length; i++) {
+                readBtn.addEventListener("click", (e) => {
+                for (let i=0; i<this.books.length; i++) {
                     if (this.books[i].id == e.target.dataset.id) {
                         this.books[i].read = "read";
                         this.displayBooks();
@@ -84,6 +83,7 @@ class Library {
 
 }
 
+const myLibrary = new Library();
 const Hamlet = new Book("Hamlet", "Shakespeare", 305, "not read yet");
 myLibrary.addBookToLibrary(Hamlet);
 
